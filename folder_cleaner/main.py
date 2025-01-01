@@ -14,10 +14,15 @@ VIDEO_FILE_PATH = PATH_TO_PLACE_FILES + os.getenv('VIDEO_FILE_PATH_NAME')
 TEXT_FILE_FOLDER = PATH_TO_PLACE_FILES + os.getenv('TEXT_FILE_FOLDER_NAME')
 CSS_FILE_FOLDER = PATH_TO_PLACE_FILES + os.getenv('CSS_FILE_FOLDER_NAME')
 
-print(f'PATH_TO_ORGANIZE: {PATH_TO_ORGANIZE}')
-print(f'PATH_TO_PLACE_FILES: {PATH_TO_PLACE_FILES}')
+# setup supported file extensions lists
+SUPPORTED_EXTENSIONS = {
+  'IMAGE_EXTENSIONS': ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.webp'],
+  'VIDEO_EXTENSIONS': ['.mp4', '.avi', '.mkv', '.mov'],
+  'DOC_EXTENSIONS': ['.txt', '.docx', '.pdf', '.xlsx', '.csv', '.rtf'],
+  'STYLE_EXTESNIONS': ['.css', '.sass', '.scss'],
+}
 
-def move_and_arrange(input_path: str) -> None:
+def organize_input(input_path: str) -> None:
   # change to input path
   os.chdir(input_path)
   # save list of files in directory to variable
@@ -25,7 +30,7 @@ def move_and_arrange(input_path: str) -> None:
 
   # iterate over file list
   for file in file_list:
-    src_dest = get_file_category(file)
+    src_dest = get_dir_by_file(file)
     
     if src_dest:
       # create the source directory if it doesn't exist yet
@@ -39,23 +44,18 @@ def move_and_arrange(input_path: str) -> None:
   print('All relevant files moved')
 
 # returns directory the file should be moved to based off its extension
-def get_file_category(file_name: str) -> Union[None, str]:
-  image_extensions = ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.webp']
-  video_extensions = ['.mp4', '.avi', '.mkv', '.mov']
-  document_extensions = ['.txt', '.docx', '.pdf', '.xlsx', '.csv', '.rtf']
-  style_extensions = ['.css', '.sass', '.scss']
-
+def get_dir_by_file(file_name: str) -> Union[None, str]:
   ext = os.path.splitext(file_name)[1].lower()
 
-  if ext in image_extensions:
+  if ext in SUPPORTED_EXTENSIONS['IMAGE_EXTENSIONS']:
     return IMAGE_FILE_PATH
-  elif ext in video_extensions:
+  elif ext in SUPPORTED_EXTENSIONS['VIDEO_EXTENSIONS']:
     return VIDEO_FILE_PATH
-  elif ext in document_extensions:
+  elif ext in SUPPORTED_EXTENSIONS['DOC_EXTENSIONS']:
     return TEXT_FILE_FOLDER
-  elif ext in style_extensions:
+  elif ext in SUPPORTED_EXTENSIONS['STYLE_EXTESNIONS']:
     return CSS_FILE_FOLDER
 
   return None
 
-move_and_arrange(PATH_TO_ORGANIZE)
+organize_input(PATH_TO_ORGANIZE)
