@@ -8,6 +8,24 @@ A simple python cli to move & organize your media files
 3. Open `development.env` and copy its contents into `.env`
 4. Fill in the environment variables as described
 
+The environment variables in this file will be concatenated to construct the folders you are looking to organize and move your media to. So, you'll want to make sure these files correctly include any trailing slashes.
+
+Here is an example of what a `.env` would look like:
+
+```
+BASE_USER_PATH=/Users/mymacbook
+PATH_TO_ORGANIZE=/Desktop
+PATH_TO_PLACE_FILES=/Documents/media
+IMAGE_FILE_PATH_NAME=/images
+VIDEO_FILE_PATH_NAME=/videos
+TEXT_FILE_FOLDER_NAME=/notes
+CSS_FILE_FOLDER_NAME=/styles
+```
+
+Notice the lack of trailing slash on the ends of these values.
+
+The above setup would use the directory found at `/Users/mymacbook/Desktop` as an input folder to search for media files. Upon locating these files, it would move them to `/Users/mymacbook/Documents/media` and place them into individual subfolders based on their filetype. If you do not already have these directories on your machine, the script will create them.
+
 ## How to run
 
 1. Open your terminal and navigate to the main folder
