@@ -30,7 +30,7 @@ The above setup would use the directory found at `/Users/mymacbook/Desktop` as a
 
 As a best practice, you'll want to create a virtual environment and activate it specifically for this project. This helps neatly manage dependencies without affecting other projects.
 
-### Mac OS
+### macOS
 
 ```
 python -m venv .venv
@@ -68,7 +68,7 @@ Once your dependencies are installed and your environment variables set up, you 
 1. Open your terminal and navigate to the main folder
 2. Run the package as a module using the command below
 
-### On Mac OS
+### On macOS
 
 `python3 -m folder_cleaner.main`
 
@@ -80,7 +80,7 @@ Once your dependencies are installed and your environment variables set up, you 
 
 Unit tests are covered using `unittest` and can be run using the following commands:
 
-### On Mac OS
+### On macOS
 
 `python3 -m unittest discover -s tests -p "test_*.py"`
 
