@@ -26,6 +26,32 @@ Note that it won't matter whether these paths have a trailing slash at the end o
 
 The above setup would use the directory found at `/Users/mymacbook/Desktop` as an input folder to search for media files. Upon locating these files, it would move them to `/Users/mymacbook/Documents/media` and place them into individual subfolders based on their filetype. If you do not already have these directories on your machine, the script will create them.
 
+## Creating & Activating a virtual environment
+
+As a best practice, you'll want to create a virtual environment and activate it specifically for this project. This helps neatly manage dependencies without affecting other projects.
+
+### Mac OS
+
+```
+python -m venv .venv
+source .venv/bin/activate
+```
+
+### Windows
+
+```
+python -m venv .venv
+source .venv\Scripts\Activate.ps1
+```
+
+_If you get a permission error, run:_
+
+`Set-ExecutionPolicy Unrestricted -Scope Process`
+
+To deactivate the virtual environment, use:
+
+`deactivate`
+
 ## Installing dependencies
 
 Before you can run, you must install the dependencies used by this script.
